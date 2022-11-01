@@ -35,8 +35,8 @@ class NewsProvider:
                     'provider': self.source,
                     'category_id': category_id,
                 })
-            print(f'[provider] [{self.source}] Fetched {len(category_articles)} aricles, cat_id: {category_id}')
             articles.extend(category_articles)
+        print(f'[provider] [{self.source}] Fetched {len(articles)} articles')
         return articles
 
 

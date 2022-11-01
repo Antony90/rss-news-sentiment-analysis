@@ -97,12 +97,13 @@ class AnalyzeNews:
         # predictions = self.model(batch_input_ids)
 
     def run(self):
+        print(f"[analyzer] [{datetime.now().strftime('%H:%M')}] Start job")
         articles = self._fetch_all_articles()
-        print(f'Orig len={len(articles)}')
+        init_len = len(articles)
         articles = self._filter_saved_articles(articles)
-        print(f'Pruned len={len(articles)}')
-        print(f'[analyzer] Analyzing sentiment of {len(articles)} articles')
+        print(f'[analyzer] Pruned {init_len-len(articles)} existing articles')
         sentiment = self.get_sentiment(articles)
+        print(f'[analyzer] Analyzed sentiment of {len(articles)} articles')
 
         # Add sentiment key to each dict
         for article, sentiment in zip(articles, sentiment):
